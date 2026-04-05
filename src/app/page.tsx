@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion,  } from "framer-motion";
 import { useRef } from "react";
 import {
   Watch, Activity, Bell, Heart, Thermometer,
@@ -79,7 +79,11 @@ export default function DashboardPage() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true });
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    setIsInView(true);
+  }, []);
 
   const fetchData = useCallback(async () => {
     try {
